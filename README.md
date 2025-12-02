@@ -17,44 +17,34 @@
   - Strengthened negative prompts and identity token weighting for character consistency.
   - Sequential generation for stability; per-novel folder outputs.
 
-## Batch Results Summary
-- `output_comics/cozy_cafe`:
-  - PDF: `cozy_cafe_novel.pdf`
-  - Images: `illustration_1.png`, `illustration_2.png`, `illustration_3.png`, `illustration_4.png`, `illustration_5.png`
-- `output_comics/cyberpunk_city`:
-  - PDF: `cyberpunk_city_novel.pdf`
-  - Images: `illustration_1.png`, `illustration_2.png`, `illustration_3.png`, `illustration_4.png`, `illustration_5.png`
-- `output_comics/detective_blackwood`:
-  - PDF: `detective_blackwood_novel.pdf`
-  - Images: `illustration_1.png`, `illustration_2.png`, `illustration_3.png`, `illustration_4.png`, `illustration_5.png`, `illustration_6.png`
-- `output_comics/epic_fantasy`:
-  - PDF: `epic_fantasy_novel.pdf`
-  - Images: `illustration_1.png`, `illustration_2.png`, `illustration_3.png`, `illustration_4.png`, `illustration_5.png`, `illustration_6.png`
-- `output_comics/space_odyssey`:
-  - PDF: `space_odyssey_novel.pdf`
-  - Images: `illustration_1.png`, `illustration_2.png`, `illustration_3.png`, `illustration_4.png`, `illustration_5.png`, `illustration_6.png`
+# Comic WorkStation — One-Page README
+
+## Summary
+- Multi-agent pipeline that generates short English illustrated novels (images + PDF per novel).
+- Environment: Conda "chemist" on Windows (PowerShell). Deps in `comic_agent/requirements.txt`.
+- Outputs: five folders under `output_comics/` with final PDFs and images.
+
+## Model & Pipeline (very brief)
+- Base model: `ogkalu/Comic-Diffusion` via `diffusers.StableDiffusionPipeline` (CSA disabled).
+- Agents: ScriptWriter → Refiner (short English prompts + identity consistency) → ImageGenerator (quality=high) → Composer (PDF with Unicode fonts).
+
+## Outputs (PDF names)
+- `output_comics/cozy_cafe/cozy_cafe_novel.pdf`
+- `output_comics/cyberpunk_city/cyberpunk_city_novel.pdf`
+- `output_comics/detective_blackwood/detective_blackwood_novel.pdf`
+- `output_comics/epic_fantasy/epic_fantasy_novel.pdf`
+- `output_comics/space_odyssey/space_odyssey_novel.pdf`
 
 ## Featured Images
 <div align="center">
-  <img src="output_comics/2025-12-02%20222706.png" alt="Sample 2025-12-02 222706" width="320" />
-  <img src="output_comics/2025-12-02%20225543.png" alt="Sample 2025-12-02 225543" width="320" />
-  <img src="output_comics/2025-12-02%20225648.png" alt="Sample 2025-12-02 225648" width="320" />
+  <img src="output_comics/2025-12-02%20222706.png" alt="Sample 2025-12-02 222706" width="220" />
+  <img src="output_comics/2025-12-02%20225543.png" alt="Sample 2025-12-02 225543" width="220" />
+  <img src="output_comics/2025-12-02%20225648.png" alt="Sample 2025-12-02 225648" width="220" />
 </div>
 
-## Quality & Stability
-- Default quality mode: `high`. Single-run and batch runs complete reliably.
-- Non-blocking warnings: Hugging Face cache lacks `.safetensors` for UNet/VAE; `diffusers` falls back to unsafe serialization. Set `allow_pickle=False` to force error if desired. Current outputs are unaffected.
-- PDF encoding: Unicode TTF font registration ensures proper text rendering and styles.
-
-## Paths & Usage
-- Single-run example: `comic_agent/run_holmes_comic.py`.
-- Batch script: `comic_agent/generate_batch_novels.py` (produces all five novels).
-- PowerShell commands:
+## Run
 ```powershell
 python .\comic_agent\generate_batch_novels.py
 ```
 
-## Next Steps (Suggestions)
-- Further tune negative prompts and identity token weights for finer consistency.
-- Add per-segment fallback/skip logic on image generation for robustness.
-- For higher fidelity, extend `quality_modes` in `project_config.json` or switch to a stronger base model.
+More details: `PROJECT_REPORT_EN.md` (EN) / `PROJECT_REPORT.md` (CN).
