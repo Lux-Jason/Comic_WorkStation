@@ -1,0 +1,58 @@
+{
+  "project_name": "AI_Comic_Studio",
+  "agents": {
+    "script_writer": {
+      "model": "deepseek-chat",
+      "model_params": {
+        "temperature": 0.7,
+        "max_tokens": 3000
+      },
+      "prompt_template": "Write a short detective novel chapter based on the following settings.\\nTheme: {theme}\\nCharacters: {characters}\\nScene: {scene_desc}\\n\\nRequirements:\\n1. Write ONLY in English prose.\\n2. Insert illustration markers at appropriate points (e.g., new character entrance, key scene change, important clue).\\n3. The marker format MUST be: [ILLUSTRATION: scene description]\\n4. The scene description MUST specify either 'Character Portrait' or 'Scene Illustration'.\\n5. Include at least 5 illustrations.\\n\\nExample output:\\nIt was a dark night...\\n[ILLUSTRATION: Scene Illustration, dark rainy street, gas lamps, gloomy atmosphere]\\nThe detective stepped out...\\n[ILLUSTRATION: Character Portrait, Detective Arthur, sharp eyes, holding a pipe, upper-body shot]\\nHe said..."
+    },
+    "layout_planner": {
+      "model": "deepseek-chat",
+      "model_params": {
+        "temperature": 0.6,
+        "max_tokens": 1024
+      },
+      "prompt_template": "Deprecated for Novel Mode"
+    },
+    "image_generator": {
+      "model": "ogkalu/Comic-Diffusion",
+      "model_params": {
+        "width": 512,
+        "height": 768,
+        "num_inference_steps": 28,
+        "guidance_scale": 7.0,
+        "scheduler": "DPMSolverMultistepScheduler"
+      },
+      "prompt_template": "{description}, anime style",
+      "quality_modes": {
+        "fast": {"num_inference_steps": 20, "guidance_scale": 6.0},
+        "standard": {"num_inference_steps": 28, "guidance_scale": 7.0},
+        "high": {"num_inference_steps": 42, "guidance_scale": 6.5}
+      },
+      "negative_prompt_core": "lowres, bad hands, malformed, extra limbs, extra fingers, missing fingers, fused fingers, distorted, disfigured, mutated, ugly, deformed, wrong anatomy, bad proportions, duplicate, watermark, signature, text artifact, blurry, jpeg artifacts, grainy, noisy, oversaturated, neon bleed",
+      "negative_prompt_style": "worst quality, low quality, normal quality, out of frame, cropped, skewed perspective, unnatural lighting",
+      "upscale": {"enabled": false, "factor": 1.5, "mode": "lanczos"}
+    },
+    "refiner": {
+      "model": "deepseek-chat",
+      "model_params": {
+        "temperature": 0.5,
+        "max_tokens": 512
+      },
+      "prompt_template": "Convert the following description into an ultra-concise Stable Diffusion English prompt.\\nOriginal: {prompt}\\nCharacter bible: {character_design}\\n\\nRules:\\n1. Extremely concise: keep only core keywords (character traits + action OR core scene elements).\\n2. Total length strictly 10–12 words.\\n3. No long phrases; use single words or short phrases separated by commas.\\n4. Example: 'male detective, silver hair, trench coat, holding pipe, rain'"
+    },
+    "composer": {
+      "output_format": "comic_strip_png",
+      "layout": {
+        "panels_per_row": 2,
+        "panel_spacing": 20,
+        "background_color": "white",
+        "font_path": "arial.ttf",
+        "font_size": 20
+      }
+    }
+  }
+}

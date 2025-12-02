@@ -1,0 +1,37 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+pip-wheel-metadata/
+
+# Environments
+.env
+.env.*
+venv/
+.venv/
+
+# Models & large artifacts (do not push)
+models/
+*.safetensors
+*.ckpt
+*.pt
+*.bin
+*.onnx
+
+# Generated outputs (large)
+output_comics/
+werewolf_history/
+werewolf_memory/
+
+# Caches
+.cache/
+**/.ipynb_checkpoints/
+huggingface/
