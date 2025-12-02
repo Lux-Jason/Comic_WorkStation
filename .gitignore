@@ -1,3 +1,4 @@
+
 # OS / Editor
 .DS_Store
 Thumbs.db
@@ -8,6 +9,13 @@ Thumbs.db
 __pycache__/
 *.pyc
 *.pyo
+
+# Generated outputs
+# Track output_comics (per request)
+# Ignore optional histories
+werewolf_history/
+werewolf_memory/
+
 *.pyd
 *.log
 pip-wheel-metadata/
@@ -26,10 +34,7 @@ models/
 *.bin
 *.onnx
 
-# Generated outputs (large)
-output_comics/
-werewolf_history/
-werewolf_memory/
+
 
 # Caches
 .cache/
