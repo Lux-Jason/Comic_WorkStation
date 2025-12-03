@@ -78,8 +78,8 @@
 - Artifacts are under `output_comics/` (per‑story subfolders with PNGs + PDF).
 - Sample images:
 <div align="center">
-  <img src="output_comics/2025-12-02%20225648.png" alt="Sample 2025-12-02 225648" width="250" />
-  <img src="output_comics/2025-12-02%20222706.png" alt="Sample 2025-12-02 222706" width="250" />
-  <img src="output_comics/2025-12-02%20225543.png" alt="Sample 2025-12-02 225543" width="250" />
+  <img src="output_comics/2025-12-02%20225648.png" alt="Sample 2025-12-02 225648" width="300" />
+  <img src="output_comics/2025-12-02%20222706.png" alt="Sample 2025-12-02 222706" width="300" />
+  <img src="output_comics/2025-12-02%20225543.png" alt="Sample 2025-12-02 225543" width="300" />
 </div>
 
